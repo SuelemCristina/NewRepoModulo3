@@ -1,0 +1,77 @@
+﻿@model AgenciaBoaViagem.Models.Promocoes
+
+@{
+    ViewData["Title"] = "Promocoes";
+}
+
+<h1>Promocoes</h1>
+
+
+<h2 id="h1">Cadastre-se e receba nossas promoções.</h2>
+<br>
+<img id="imgpromo" src="../img/promocoes.png" alt="imagem de divulgação de promoção" height="500" width="500">
+<br>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefone" class="control-label"></label>
+                <input asp-for="Telefone" class="form-control" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<table class="table bg-secundary">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.promocoes) {
+        <tr>
+            <td>
+                @item.Nome
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Telefone
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPromocao">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPromocao">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPromocao">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
